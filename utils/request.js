@@ -9,7 +9,7 @@
   1 功能点明确
   2 组件内部保留静态代码
   3 将动态的数据抽取成props参数，由使用者更具自身的情况以标签属性的形式动态的传入props数据
-  4 一个良好的组件应该设置组件的必要性以及数据类型  sdad
+  4 一个良好的组件应该设置组件的必要性以及数据类型
 */
 import config from './config'
 export default (url, data = {}, methods = "GET") => {

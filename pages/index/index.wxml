@@ -7,7 +7,7 @@
   </swiper>
   <!-- 五个图标导航区域 -->
   <view class="nav-container">
-    <view class="nav-item">
+    <view class="nav-item" bindtap="toRecommendSong">
       <text class="iconfont icon-tuijian"></text>
       <text>每日推荐</text>
     </view>

@@ -7,8 +7,10 @@ Page({
     data: {
         videoGroupList: [],
         videoList: [],
+        videoUpdateTime: [],
         navId: '',
         currentlyPlayingVideoVid: '',
+        isTriggered: false
     },
     // 切换标签事件
     async changeNav(event) {
@@ -72,7 +74,8 @@ Page({
         })
         wx.hideLoading()
         this.setData({
-            videoList: result.datas
+            videoList: result.datas,
+            isTriggered: false
         })
     },
     handlePlay(event) {
@@ -94,9 +97,51 @@ Page({
         })
         // 创建video标签实例对象
         this.videoContext = wx.createVideoContext(id)
-        // 自动播放
-        // this.videoContext.play()  会出现两个视频声音同事出现的问题
+        // 判断当前视频 之前是否有播放过的记录  从而从历史时间段开始播放
+        let {
+            videoUpdateTime
+        } = this.data
+        let videoItem = videoUpdateTime.find(item => item.vid == id)
+        if (videoItem) this.videoContext.seek(videoItem.currentTime)
+        // 自动播放  会出现两个视频声音同事出现的问题
+        this.videoContext.play()
     },
+    handleTimeupdate(event) {
+        let videoTimeObj = {
+            vid: event.currentTarget.id,
+            currentTime: event.detail.currentTime
+        }
+        let {
+            videoUpdateTime
+        } = this.data
+        let videoItem = videoUpdateTime.find(item => {
+            return item.vid == videoTimeObj.vid
+        })
+        if (videoItem) {
+            videoItem.currentTime = event.detail.currentTime
+        } else {
+            videoUpdateTime = [...videoUpdateTime, videoTimeObj]
+        }
+        this.setData({
+            videoUpdateTime
+        })
+    },
+    handleEnded(event) {
+        console.log('handleEndedevent', event.currentTarget.id);
+        let {
+            videoUpdateTime
+        } = this.data
+        videoUpdateTime.splice(videoUpdateTime.findIndex(item => item.vid == event.currentTarget.id), 1)
+        this.setData({
+            videoUpdateTime,
+            currentlyPlayingVideoVid: ''
+        })
+    },
+    async handleRefreshh() {
+        await this.getVideoList(this.data.navId)
+    },
+    handleToLower() {},
+
     /**
      * 生命周期函数--监听页面加载
      */
@@ -137,20 +182,25 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        console.log('页面的下拉动作');
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+        console.log('页面上拉触底');
     },
 
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
-
+    onShareAppMessage: function ({from,target}) {
+        if(from=='button'){
+            return {
+                title:target.dataset.videoitem.title,
+                page: '/pages/video/video'
+              }
+        }
     }
 })

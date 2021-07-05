@@ -1,5 +1,5 @@
 /* 引入iconfont */
-@import "/static/iconfont/iconfonnt.wxss";
+@import "/static/iconfont/iconfont.wxss";
 page {
   height: 100%;
   --themeColor: #d43c33;

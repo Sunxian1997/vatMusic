@@ -13,6 +13,11 @@ Page({
     // 获取排行榜数据
     rankingList: []
   },
+  toRecommendSong(){
+    wx.navigateTo({
+      url: '/pages/recommendSong/recommendSong',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

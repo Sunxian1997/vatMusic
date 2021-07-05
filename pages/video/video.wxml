@@ -6,7 +6,8 @@
         <image src="/static/images/logo.png"></image>
     </view>
     <!-- 导航区域 -->
-    <scroll-view scroll-x class="navScroll" enable-flex scroll-into-view="{{'navScrollItem'+navId}}" scroll-with-animation>
+    <scroll-view scroll-x class="navScroll" enable-flex scroll-into-view="{{'navScrollItem'+navId}}"
+        scroll-with-animation>
         <view class="nanvItem" wx:for="{{videoGroupList}}" wx:key="id">
             <view class="navContent {{navId==item.id ? 'active':''}}" bindtap="changeNav"
                 id="{{'navScrollItem'+item.id}}" data-id="{{item.id}}">
@@ -15,17 +16,17 @@
         </view>
     </scroll-view>
     <!-- 视频列表区域 -->
-    <scroll-view scroll-y class="videoScroll">
+    <scroll-view scroll-y class="videoScroll" refresher-triggered="{{isTriggered}}" refresher-enabled
+    bindscrolltolower="handleToLower"
+        bindrefresherrefresh="handleRefreshh">
         <view wx:if="{{videoList.length}}">
             <view class="videoItem" wx:for="{{videoList}}" wx:key="index">
-                <video class="common" src="{{item.data.urlInfo.url}}" bindplay="handlePlay" id="{{item.data.vid}}"
-                poster="{{item.data.coverUrl}}"
-                wx:if="{{currentlyPlayingVideoVid==item.data.vid}}"
-                autoplay
-                object-fit="fill"
-                ></video>
+                <video class="common" src="{{item.data.urlInfo.url}}" bindtimeupdate="handleTimeupdate"
+                    bindplay="handlePlay" id="{{item.data.vid}}" bindended="handleEnded" poster="{{item.data.coverUrl}}"
+                    wx:if="{{currentlyPlayingVideoVid==item.data.vid}}" object-fit="fill"></video>
                 <!-- 使用image代替video  优化 -->
-                <image wx:else bindtap="handlePlay" id="{{item.data.vid}}" class="common" src="{{item.data.coverUrl}}"></image>
+                <image wx:else bindtap="handlePlay" id="{{item.data.vid}}" class="common" src="{{item.data.coverUrl}}">
+                </image>
                 <view class="content">{{item.data.title}}</view>
                 <view class="footer">
                     <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>
@@ -39,7 +40,7 @@
                             <text class="iconfont icon-pinglun"></text>
                             <text class="count">{{item.data.commentCount}}</text>
                         </text>
-                        <button open-type="share" class="item btn">
+                        <button open-type="share" class="item btn" data-videoItem="{{item.data}}">
                             <text class="iconfont icon-gengduo"></text>
                         </button>
                     </view>
