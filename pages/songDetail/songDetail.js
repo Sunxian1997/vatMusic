@@ -148,7 +148,7 @@ Page({
         this.backgroundAudioManager.onPlay(() => {
             this.changePlayState(true);
             // 修改全局音乐播放的状态
-            appInstance.globalData.musicId = musicId;
+            appInstance.globalData.musicId = musicId; 
         });
         this.backgroundAudioManager.onPause(() => {
             this.changePlayState(false);
@@ -180,13 +180,13 @@ Page({
                 currentWidth
             })
 
-        })
+        });
         // 监听音频加载中事件
         this.backgroundAudioManager.onWaiting(() => {
-            wx.showToast({
-                title: '努力加载中',
-                icon: 'none'
-            })
+           wx.showToast({
+             title: '努力加载中',
+             icon:'none'
+           })
         })
     },
 
