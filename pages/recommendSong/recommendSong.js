@@ -1,4 +1,5 @@
 import request from '../../utils/request'
+import PubSub from 'pubsub-js';
 Page({
 
     /**
@@ -7,8 +8,8 @@ Page({
     data: {
         day: '',
         month: '',
-        index: '',
-        recommendList: []
+        index: 0, // 点击音乐的下标
+        recommendList: [] // 推荐列表数据
     },
     async getRecommendList() {
         // ➢ 说明: 该接口用于获取给用户的每日推荐数据
@@ -61,6 +62,27 @@ Page({
             month: new Date().getMonth() + 1
         })
         this.getRecommendList()
+        // 订阅来自songDetail页面发布的消息
+        PubSub.subscribe('switchType', (msg, type) => {
+            let {
+                index,
+                recommendList
+            } = this.data
+            // 判断是上一首还是下一首
+            if (type == 'pre') {
+                index == 0 && (index = recommendList.length)
+                index -= 1
+            } else {
+                (index == recommendList.length - 1) && (index = -1)
+                index += 1
+            }
+            // 更新下标
+            this.setData({
+                index
+            })
+            // 将musicID回传给songDetail页面
+            PubSub.publish('musicId', recommendList[index].id)
+        })
     },
 
     /**

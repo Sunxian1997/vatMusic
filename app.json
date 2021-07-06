@@ -1,12 +1,14 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/search/search",
+        "pages/recommendSong/recommendSong",
         "pages/video/video",
         "pages/personal/personal",
         "pages/login/login",
-        "pages/recommendSong/recommendSong",
         "pages/songDetail/songDetail"
     ],
+    "requiredBackgroundModes": ["audio"],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#d43c33",
