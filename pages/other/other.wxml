@@ -1,0 +1,5 @@
+<import src="/pages/myTemplate/myTemplate.wxml"></import>
+<view class="other">
+  <view>测试模板</view>
+  <template is="myTmp" data="{{...person}}"></template>
+</view>

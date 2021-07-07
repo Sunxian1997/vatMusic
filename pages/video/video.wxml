@@ -2,7 +2,7 @@
     <!-- 头部区域 -->
     <view class="header">
         <image src="/static/images/video/video.jpg"></image>
-        <view class="search">搜索</view>
+        <view class="search" bindtap="toSearch">搜索音乐</view>
         <image src="/static/images/logo.png"></image>
     </view>
     <!-- 导航区域 -->
@@ -21,7 +21,10 @@
         bindrefresherrefresh="handleRefreshh">
         <view wx:if="{{videoList.length}}">
             <view class="videoItem" wx:for="{{videoList}}" wx:key="index">
-                <video class="common" src="{{item.data.urlInfo.url}}" bindtimeupdate="handleTimeupdate"
+                <video class="common" src="{{item.data.urlInfo.url}}" 
+                bindloadedmetadata="handleLoadedmetadata"
+                bindwaiting="handleVideoWaiting"
+                bindtimeupdate="handleTimeupdate"
                     bindplay="handlePlay" id="{{item.data.vid}}" bindended="handleEnded" poster="{{item.data.coverUrl}}"
                     wx:if="{{currentlyPlayingVideoVid==item.data.vid}}" object-fit="fill"></video>
                 <!-- 使用image代替video  优化 -->

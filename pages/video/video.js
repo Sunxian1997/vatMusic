@@ -141,6 +141,19 @@ Page({
         await this.getVideoList(this.data.navId)
     },
     handleToLower() {},
+    handleVideoWaiting(event){
+        wx.showLoading({
+          title: '努力加载中',
+        })
+    },
+    handleLoadedmetadata(){
+        wx.hideLoading()
+    },
+    toSearch(){
+        wx.navigateTo({
+          url: '/pages/search/search',
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载

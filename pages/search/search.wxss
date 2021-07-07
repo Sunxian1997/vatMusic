@@ -8,6 +8,7 @@
     height: 60rpx;
     line-height: 60rpx;
     padding: 10rpx 0rpx;
+    align-items: center;
 }
 
 .searchInput {
@@ -23,13 +24,13 @@
 
 .searchIcon {
     position: absolute;
-    top: 4rpx;
-    left: 15rpx;
+    top:10rpx;
+    left: 30rpx;
 }
 
 .guanbiIcon {
     position: absolute;
-    top: 4rpx;
+    top: 10rpx;
     right: 130rpx;
 }
 
@@ -59,10 +60,15 @@
     height: 80rpx;
     line-height: 80rpx;
     font-size: 26rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .hotItem .order {
     margin: 0rpx 10rpx;
+    color: var(--themeColor);
+    font-weight: 600;
 }
 
 .hotItem image {

@@ -1,7 +1,9 @@
 {
     "pages": [
-        "pages/search/search",
+        "pages/other/other",
+        "pages/myTemplate/myTemplate",
         "pages/index/index",
+        "pages/search/search",
         "pages/recommendSong/recommendSong",
         "pages/video/video",
         "pages/personal/personal",

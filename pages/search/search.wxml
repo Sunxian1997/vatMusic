@@ -8,7 +8,7 @@
             <text hidden="{{!searchContent}}" bindtap="clearSearchContent"
                 class="iconfont icon-guanbi guanbiIcon"></text>
         </view>
-        <text class="cancle">取消</text>
+        <text class="cancle" bindtap="backTo">取消</text>
     </view>
     <!-- 搜索内容展示区 -->
     <block wx:if="{{searchContent.length}}">
