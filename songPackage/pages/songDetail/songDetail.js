@@ -1,4 +1,4 @@
-import request from '../../utils/request'
+import request from '../../../utils/request'
 import moment from 'moment'
 import PubSub from 'pubsub-js';
 // 获取全局实例

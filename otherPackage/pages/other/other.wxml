@@ -2,4 +2,7 @@
 <view class="other">
   <view>测试模板</view>
   <template is="myTmp" data="{{...person}}"></template>
+  <!-- 测试获取用户唯一标识openID -->
+  <view>测试获取用户唯一标识openID</view>
+  <button bindtap="getOpenId">获取openID</button>
 </view>

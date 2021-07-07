@@ -1,14 +1,27 @@
-// pages/other/other.js
+import request from '../../../utils/request'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    person:{
-      userName:'张三',
-      age:23
+    person: {
+      userName: '张三',
+      age: 23
     }
+  },
+  getOpenId() {
+    // 获取登录凭证给服务器
+    wx.login({
+      success: async (res) => {
+        console.log(res);
+        let code = res.code
+        // 将登录凭证发送给服务器端
+        const result = await request('/getOpenId', {
+          code
+        })
+      }
+    })
   },
 
   /**

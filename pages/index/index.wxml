@@ -11,9 +11,10 @@
       <text class="iconfont icon-tuijian"></text>
       <text>每日推荐</text>
     </view>
-    <view class="nav-item">
+    <view class="nav-item" bindtap="toOtherPage">
       <text class="iconfont icon-yinleyinpu"></text>
-      <text>歌单</text>
+      <!-- <text>歌单</text> -->
+      <text>Other</text>
     </view>
     <view class="nav-item">
       <text class="iconfont icon-paihangbang"></text>
