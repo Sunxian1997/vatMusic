@@ -15,8 +15,8 @@ import config from './config'
 export default (url, data = {}, methods = "GET") => {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: config.host + url,
-      // url: config.mobleHost + url,
+      // url: config.host + url,
+      url: config.mobleHost + url,
       data,
       methods,
       header: {

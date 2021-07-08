@@ -51,7 +51,7 @@
   display: flex;
   flex-direction: column;
   background: linear-gradient(left, red, black);
-  background: rgba(0, 0, 0, .7);
+  /* background: rgba(0, 0, 0, .7); */
   height: 240rpx;
   color: #f7d680;
   border-radius: 16rpx 16rpx 0 0;
@@ -61,10 +61,16 @@
 
 .vip-card-box .card-bg {
   position: absolute;
-  top: 20rpx;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  width: 100%;
+  /* top: 20rpx;
   right: 0;
   width: 380rpx;
-  height: 260rpx;
+  height: 260rpx; */
 }
 
 .vip-card-box .b-btn {
@@ -103,13 +109,18 @@
   font-size: 22rpx;
   color: #f7d680;
   margin-bottom: 28rpx;
+  display: flex;
+  align-items: center;
 }
 
 .vip-card-box .tit .iconfont {
   color: #f6e5a3;
   margin-right: 16rpx;
 }
-
+.tit image {
+  height: 40rpx;
+  width: 80rpx;
+}
 
 
 

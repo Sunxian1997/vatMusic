@@ -34,7 +34,7 @@ Page({
         moveY = event.touches[0].clientY
         moveDestance = moveY - startY
         if(moveDestance<=0) return
-        if(moveDestance>=80) moveDestance = 80
+        if(moveDestance>=140) moveDestance = 140
         this.setData({
             coverTransform:`translateY(${moveDestance}rpx)`
         })
